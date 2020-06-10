@@ -10,8 +10,14 @@ const allAccountsInfoRequest = {
 const headers = { 'Content-Type': 'application/json' };
 const ownerAccount = "0x00a1103c941fc2e1ef8177e6d9cc4657643f274b";
 const MyContractJson = require(path.resolve('../dapp/build/contracts/MyContract.json'));
-const network = MyContractJson['networks']
+const network = MyContractJson['networks'];
 const contractAddress = network['8995'].address;
+
+const contratoDePecasProcessuais = require(path.resolve('../dapp/build/contracts/PecasProcessuais.json'));
+const pecasProcessuais = {
+    endereco: contratoDePecasProcessuais['networks']['8995'].address
+};
+
 
 function newAccountRequest(name, pass) {
     let newAccountRequest = { "method": "parity_newAccountFromPhrase", "params": [name, pass], "id": 1, "jsonrpc": "2.0" };
@@ -31,5 +37,6 @@ module.exports = {
     setAccountNameRequest,
     headers,
     ownerAccount,
-    contractAddress
+    contractAddress,
+    pecasProcessuais
 }

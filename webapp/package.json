@@ -10,15 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
+    "chart.js": "^2.9.3",
     "connect-redis": "^3.4.1",
     "ejs": "^2.6.1",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
     "lodash": "^4.17.11",
+    "moment": "^2.26.0",
     "nodemon": "^1.19.0",
     "redis": "^2.8.0",
+    "sortablejs": "^1.10.2",
     "web3": "^1.0.0-beta.55"
   }
 }

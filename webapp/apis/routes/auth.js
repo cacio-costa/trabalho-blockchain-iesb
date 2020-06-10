@@ -23,6 +23,8 @@ router.get('/dashboard', auth.renderDashboard);
 // @access Private
 router.get('/logout', auth.logout);
 
+router.get('/username', auth.getUsername);
+
 // @route  POST /login
 // @desc   logs in user
 // @access Public

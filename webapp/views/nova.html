@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('includes/head-comum.html'); %>
+    </head>
+    <body>
+        <div class="body-container">
+            <%- include('includes/navbar.html'); %>
+    
+            <div class="main-container">
+                <%- include('includes/menu.html'); %>
+
+                <div class="main-content" role="main">
+                    <div class="page-content container">
+                        <div class="page-header">
+                            <h1 class="page-title text-primary-d2">
+                                Peça processual
+                                <small class="page-info text-secondary-d2">
+                                    <i class="fa fa-angle-double-right text-80"></i>
+                                    Cadastrar
+                                </small>
+                            </h1>
+                        </div>
+
+                        <form id="peca">
+                            <div class="row mb-3">
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="input-floating-label text-blue-d1 brc-blue-m1">
+                                        <input type="text" class="form-control shadow-none" id="numero-unico" name="numero-unico" autocomplete="off" />
+                                        <span class="floating-label text-grey-m3">Número único do processo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-5 col-sm-12">
+                                    <input type="file" class="ace-file-input" id="arquivo" name="arquivo" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-sm-12">
+                                    <button id="load" type="submit" class="btn btn-success btn-block">Adicionar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- .page-content -->
+
+                    <div id="footer" class="footer">
+                    <!-- footer content -->
+                    </div><!-- #footer -->
+                </div><!-- main -->
+            
+            </div><!-- .main-container -->
+    
+        </div><!-- .body-container -->
+            
+        <%- include('includes/scripts-comuns.html'); %>
+
+        <script src="/js/pecas-processuais/nova.js"></script>
+    </body>
+</html>

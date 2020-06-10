@@ -176,11 +176,14 @@ async function login(req, res) {
         });
 }
 
+const getUsername = (req, res) => res.send({ username: req.session.username });
+
 module.exports = { 
     renderIndex, 
     renderRegister, 
     renderDashboard, 
     register, 
     logout, 
-    login 
+    login,
+    getUsername
 };

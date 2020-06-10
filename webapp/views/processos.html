@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('includes/head-comum.html'); %>
+    </head>
+    <body>
+        <div class="body-container">
+            <%- include('includes/navbar.html'); %>
+    
+            <div class="main-container">
+                <%- include('includes/menu.html'); %>
+
+                <div class="main-content" role="main">
+                    <div class="page-content container">
+                        <div class="page-header">
+                            <h1 class="page-title text-primary-d2">
+                                Processos
+                                <small class="page-info text-secondary-d2">
+                                    <i class="fa fa-angle-double-right text-80"></i>
+                                    Listagem
+                                </small>
+                            </h1>
+                        </div>
+
+                        <div class="row" id="lista-de-processos"></div>
+                    </div><!-- .page-content -->
+
+                    <div id="footer" class="footer">
+                    <!-- footer content -->
+                    </div><!-- #footer -->
+                </div><!-- main -->
+            
+            </div><!-- .main-container -->
+    
+        </div><!-- .body-container -->
+            
+        <%- include('includes/scripts-comuns.html'); %>
+
+        <script src="/js/pecas-processuais/listaProcessos.js"></script>
+
+    </body>
+</html>

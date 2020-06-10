@@ -3,16 +3,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 
-const products = require("./apis/products/products.js");
-const stages = require("./apis/products/stages");
-const history = require("./apis/products/history.js");
-
-const formVeiculo = require("./apis/veiculos/formVeiculo.js");
+const pecasProcessuais = require("./apis/pecas-processuais");
 
 // set default views folder
 app.set('views', __dirname + "/views");
 app.engine('html', require('ejs').renderFile);
 app.use(express.static('public'));
+app.use('/node_modules', express.static('node_modules'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -33,31 +30,22 @@ app.get('/', (req, res) => {
 // * Auth pages * //
 app.use("/api/auth", authRoutes);
 
-// * Products pages * //
-app.get("/addProducts", products.renderAddProducts);
-app.get("/getProducts", products.renderGetProducts);
-app.get("/editProduct", products.renderEditProduct);
+const autenticacaoInterceptor = function(req, res, next) {
+    if (!req.session.username) {
+        res.redirect('/api/auth');
+        res.end();
+    } else {
+        next();
+    }
+};
 
-app.post("/addProducts", products.addProducts);
-app.post("/updateProduct", products.updateProduct);
-app.get("/listProducts", products.getProducts);
-app.get("/getProduct", products.getProduct);
+app.use(autenticacaoInterceptor);
+pecasProcessuais(app);
 
-// * Estágios * //
-app.get("/addStage", stages.renderAddStage);
-app.get("/getStages", stages.renderGetStages);
-
-app.post("/addStage", stages.addStage);
-app.get("/listStages", stages.listStages);
-
-// * History * //
-app.get("/addHistory", history.renderAddHistory);
-app.post("/addHistory", history.addHistory);
-
-app.get("/getHistory", history.getHistory);
-app.get("/listHistory", history.renderGetHistory);
-
-app.get("/formVeiculo", formVeiculo.renderAddVeiculo)
+app.use(function(err, req, res, next) {
+    console.log('Erro aconteceu: ', err.stack);
+    res.status(500).send({ msg: err.message });
+});
 
 const PORT = process.env.PORT || 3000;
 
