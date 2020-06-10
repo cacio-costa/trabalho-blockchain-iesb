@@ -53,6 +53,7 @@ function carregaPecas(numeroUnico) {
             lista.children().remove();
             resposta.pecas.map(peca => {
                     return `<dt class="text-600"><a href="/processos/${numeroUnico}/pecas/${peca.id}" target="_blank">${peca.nome}</a></dt>
+                            <dd class="text-70">DONO: ${peca.dono}</dd>
                             <dd class="text-70">SHA-512: ${peca.hash}</dd>`;
                 })
                 .forEach(dados => lista.append(dados));

@@ -11,6 +11,7 @@ contract PecasProcessuais {
         string nome;
         string hash;
         string dataDeCadastro;
+        address dono;
     }
 
     function cadastraPeca(uint256 numeroUnico, string memory nomeDaPeca, string memory hash, string memory dataDeCadastro) public {
@@ -24,7 +25,13 @@ contract PecasProcessuais {
             listaDeProcessos.push(numeroUnico);
         }
 
-        Peca memory novaPeca = Peca({ id: idDaPeca, nome: nomeDaPeca, hash: hash, dataDeCadastro: dataDeCadastro });
+        Peca memory novaPeca = Peca({ 
+            id: idDaPeca, 
+            nome: nomeDaPeca, 
+            hash: hash, 
+            dataDeCadastro: dataDeCadastro,
+            dono: msg.sender
+        });
         pecasDoProcesso.push(novaPeca);
                 
         emit PecaAdicionada(idDaPeca, hash);
@@ -41,7 +48,8 @@ contract PecasProcessuais {
         return (listaDeProcessos, quantidadeDePecas);
     }
 
-    function listaPecas(uint256 numeroUnico) public view returns (uint[] memory, string[] memory, string[] memory, string[] memory) {
+    function listaPecas(uint256 numeroUnico) public view 
+        returns (uint[] memory, string[] memory, string[] memory, string[] memory, address[] memory) {
         Peca[] storage pecas = processos[numeroUnico];
         require(pecas.length > 0, "Nenhuma peca cadastrada para o processo informado.");
 
@@ -49,15 +57,17 @@ contract PecasProcessuais {
         string[] memory nomes = new string[](pecas.length);
         string[] memory hashes = new string[](pecas.length);
         string[] memory datas = new string[](pecas.length);
+        address[] memory donos = new address[](pecas.length);
 
         for (uint i = 0; i < pecas.length; i++) {
             ids[i] = pecas[i].id;
             nomes[i] = pecas[i].nome;
             hashes[i] = pecas[i].hash;
             datas[i] = pecas[i].dataDeCadastro;
+            donos[i] = pecas[i].dono;
         }
 
-        return (ids, nomes, hashes, datas);
+        return (ids, nomes, hashes, datas, donos);
     }
 
     function recuperaPeca(uint256 numeroUnico, uint idDaPeca) public view returns(Peca memory) {

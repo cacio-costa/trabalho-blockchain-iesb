@@ -147,7 +147,13 @@ let listaPecas = async (req, res) => {
             let pecas = [];
             if (registros !== null) {
                 for (i = 0; i < registros[0].length; i++) {
-                    pecas.push({ id: registros['0'][i], nome: registros['1'][i], hash: registros['2'][i], dataDeCadastro: registros['3'][i] });
+                    pecas.push({ 
+                        id: registros['0'][i], 
+                        nome: registros['1'][i],
+                        hash: registros['2'][i], 
+                        dataDeCadastro: registros['3'][i],
+                        dono: registros['4'][i],
+                    });
                 }
             }
 
