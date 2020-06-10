@@ -47,7 +47,7 @@ function register(event) {
     // previne a página de ser recarregada
     event.preventDefault();
 
-    $('#load').attr('disabled', 'disabled');
+    $('#botao-cadastrar').attr('disabled', 'disabled');
 
     // resgata os dados do formulário
     let username = $("#username-registrar").val();
@@ -59,9 +59,9 @@ function register(event) {
         // verifica resposta do servidor
         // redireciona para tela de login
         // caso a conta seja criada com sucesso
+        alert(res.msg);
         if (!res.error) {
-            window.location.href="/";
-            alert(res.msg);
+            window.location.href="/api/auth/dashboard";
             $('#entre-aqui').click();
         } else {
             alert("Erro ao criar sua conta. Por favor, tente novamente mais tarde. " + res.msg);

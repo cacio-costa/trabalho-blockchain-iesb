@@ -1,14 +1,20 @@
 $.get('/api/auth/username', resposta => document.getElementById('nome-usuario').innerText = resposta.username);
-
-console.log("*** Recuperando processos ***");
-
 document.getElementById('menu-processos').classList.add('active');
 
+console.log("*** Recuperando processos ***");
 $.get("/api/processos", function(res) {
     console.log("*** Views -> js -> pecas-processuais -> listaProcessos.js ***", res);
 
+    if (res.length == 0) {
+        document.getElementById('nenhum-processo').classList.remove("d-none");
+    } else {
+        exibeProcessos(res);
+    }
+});
+
+function exibeProcessos(processos) {
     let lista = $('#lista-de-processos');
-    res.map(processo => {
+    processos.map(processo => {
             return `<div class="col-12 col-sm-6 mt-3 mt-sm-0 cards-container mb-3" id="processo-${processo.numeroUnico}">
                         <div class="card bgc-success radius-0">
                             <div class="card-header">
@@ -34,7 +40,7 @@ $.get("/api/processos", function(res) {
                     </div>`;
         })
         .forEach(card => lista.append(card));
-});
+}
 
 function carregaPecas(numeroUnico) {
 
