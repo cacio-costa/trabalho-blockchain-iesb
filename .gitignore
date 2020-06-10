@@ -1,2 +1,4 @@
 /blockchain/nodes/data
 /webapp/node_modules
+/webapp/uploads
+contas.txt
