@@ -14,7 +14,10 @@
             
         <%- include('includes/scripts-comuns.html'); %>
         <script>
-            $.get('/api/auth/username', resposta => document.getElementById('nome-usuario').innerText = resposta.username);
+            $.get('/api/auth/username', resposta => { 
+                document.getElementById('nome-usuario').innerText = resposta.username;
+                document.getElementById('nome-usuario-mobile').innerText = resposta.username;
+            });
         </script>
     </body>
 </html>

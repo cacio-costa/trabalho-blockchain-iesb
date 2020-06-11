@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 
-const pecasProcessuais = require("./apis/pecas-processuais");
+const processos = require("./apis/processos");
 
 // set default views folder
 app.set('views', __dirname + "/views");
@@ -40,7 +40,7 @@ const autenticacaoInterceptor = function(req, res, next) {
 };
 
 app.use(autenticacaoInterceptor);
-pecasProcessuais(app);
+processos(app);
 
 app.use(function(err, req, res, next) {
     console.log('Erro aconteceu: ', err.stack);
