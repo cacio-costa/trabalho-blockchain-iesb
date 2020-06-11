@@ -1,5 +1,5 @@
-let MyContract = artifacts.require("./MyContract.sol");
+let PecasProcessuais = artifacts.require("./PecasProcessuais.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(MyContract);
+  deployer.deploy(PecasProcessuais);
 };
